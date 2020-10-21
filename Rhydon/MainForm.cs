@@ -151,6 +151,7 @@ namespace Rhydon
                 pk1.TID = 12345;
                 CB_PPu1.SelectedIndex = CB_PPu2.SelectedIndex = CB_PPu3.SelectedIndex = CB_PPu4.SelectedIndex = 0;
             }
+            SetStatusEditing();
         }
 
         private void SetStringLengths()
@@ -253,6 +254,24 @@ namespace Rhydon
             changingFields = false;
             updateStats();
 
+            SetStatusViewing();
+        }
+
+        private void SetStatusViewing()
+        {
+            lb_Status.Text = TB_Nickname.Text != "" ? "Viewing " + TB_Nickname.Text : "";
+        }
+
+        private void SetStatusEditing()
+        {
+            lb_Status.Text = TB_Nickname.Text != "" ? "Editing " + TB_Nickname.Text : "";
+        }
+
+        public void SetStatusSet(int index)
+        {
+            string DestinationList = Tab_BoxDaycare.Visible ? CB_BoxSelect.Text : "Party";
+
+            lb_Status.Text = TB_Nickname.Text + " set to " + DestinationList + " slot " + (index + 1).ToString();
         }
 
         private void UpdateSpecies(object sender, EventArgs e)
@@ -273,6 +292,8 @@ namespace Rhydon
             updateStats(); // New species implies new stats.
 
             UpdateDragOutBox();
+
+            SetStatusEditing();            
         }
 
         private void UpdateDragOutBox()
@@ -365,6 +386,8 @@ namespace Rhydon
             }
             changingFields = false;
             updateStats();
+
+            SetStatusEditing();
         }
 
         private void updateDVs(object sender, EventArgs e)
@@ -384,6 +407,7 @@ namespace Rhydon
             changingFields = false;
 
             updateStats();
+            SetStatusEditing();
         }
 
         private void updateStatEXPs(object sender, EventArgs e)
@@ -400,6 +424,7 @@ namespace Rhydon
             changingFields = false;
 
             updateStats();
+            SetStatusEditing();
         }
 
         private void updateOT(object sender, EventArgs e)
@@ -424,6 +449,8 @@ namespace Rhydon
 
             pk1.Nickname = RBY_Encoding.GetBytes(TB_Nickname.Text, JP_Mode);
             changingFields = false;
+
+            SetStatusEditing();
         }
 
         private void updateStats()
@@ -544,6 +571,7 @@ namespace Rhydon
                 if (input.Length == 0x802C) // Support Emulator saves
                     Array.Resize(ref input, 0x8000);
                 saveLoaded = Menu_ExportSAV.Enabled = false;
+                B_Apply.Enabled = false;
                 Menu_JapaneseMode.Enabled = true;
                 foreach (TabPage tp in tabBoxMulti.TabPages)
                     tp.Enabled = false;
@@ -589,6 +617,7 @@ namespace Rhydon
                 foreach (TabPage tp in tabBoxMulti.TabPages)
                     tp.Enabled = true;
                 saveLoaded = Menu_ExportSAV.Enabled = true;
+                B_Apply.Enabled = true;
                 Menu_JapaneseMode.Enabled = false;
 
                 // Indicate audibly the save is loaded
@@ -874,6 +903,32 @@ namespace Rhydon
             sav.TID = (ushort)Util.ToUInt32(TB_SaveTID.Text);
 
             changingFields = false;
+        }
+
+        private void B_Close_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void B_Apply_Click(object sender, EventArgs e)
+        {
+            if (!Menu_ExportSAV.Enabled)
+                return;
+
+            sav.CurrentBox = PLC_Box.pokemonlist;
+            sav.Party = PLC_Party.pokemonlist;
+            sav.Daycare = PLC_DayCare.pokemonlist;
+
+            sav.UpdateChecksum();
+
+            string FileName = sav.FilePath;
+            if (!FileName.EndsWith(Path.DirectorySeparatorChar.ToString()))
+            {
+                FileName += Path.DirectorySeparatorChar;
+            }
+            FileName += sav.FileName;
+            File.WriteAllBytes(FileName, sav.Data);
+            Util.Alert("Saved to: ", FileName);
         }
 
         private void openPokedexForm(object sender, EventArgs e)

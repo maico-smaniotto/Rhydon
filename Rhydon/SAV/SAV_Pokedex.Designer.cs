@@ -43,6 +43,7 @@
             // 
             // B_Cancel
             // 
+            this.B_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.B_Cancel.Location = new System.Drawing.Point(51, 299);
             this.B_Cancel.Name = "B_Cancel";
             this.B_Cancel.Size = new System.Drawing.Size(85, 23);
@@ -53,6 +54,7 @@
             // 
             // B_Save
             // 
+            this.B_Save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.B_Save.Location = new System.Drawing.Point(144, 299);
             this.B_Save.Name = "B_Save";
             this.B_Save.Size = new System.Drawing.Size(85, 23);
@@ -63,6 +65,7 @@
             // 
             // B_CaughtAll
             // 
+            this.B_CaughtAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.B_CaughtAll.Location = new System.Drawing.Point(149, 236);
             this.B_CaughtAll.Name = "B_CaughtAll";
             this.B_CaughtAll.Size = new System.Drawing.Size(120, 23);
@@ -73,6 +76,7 @@
             // 
             // B_CaughtNone
             // 
+            this.B_CaughtNone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.B_CaughtNone.Location = new System.Drawing.Point(149, 265);
             this.B_CaughtNone.Name = "B_CaughtNone";
             this.B_CaughtNone.Size = new System.Drawing.Size(120, 23);
@@ -83,6 +87,7 @@
             // 
             // B_SeenNone
             // 
+            this.B_SeenNone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.B_SeenNone.Location = new System.Drawing.Point(12, 265);
             this.B_SeenNone.Name = "B_SeenNone";
             this.B_SeenNone.Size = new System.Drawing.Size(120, 23);
@@ -93,6 +98,7 @@
             // 
             // B_SeenAll
             // 
+            this.B_SeenAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.B_SeenAll.Location = new System.Drawing.Point(12, 236);
             this.B_SeenAll.Name = "B_SeenAll";
             this.B_SeenAll.Size = new System.Drawing.Size(120, 23);
@@ -121,6 +127,8 @@
             // 
             // CLB_Caught
             // 
+            this.CLB_Caught.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.CLB_Caught.FormattingEnabled = true;
             this.CLB_Caught.Location = new System.Drawing.Point(149, 31);
             this.CLB_Caught.Name = "CLB_Caught";
@@ -130,6 +138,8 @@
             // 
             // CLB_Seen
             // 
+            this.CLB_Seen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.CLB_Seen.FormattingEnabled = true;
             this.CLB_Seen.Location = new System.Drawing.Point(12, 31);
             this.CLB_Seen.Name = "CLB_Seen";
@@ -153,10 +163,14 @@
             this.Controls.Add(this.Label_Seen);
             this.Controls.Add(this.CLB_Seen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(300, 375);
-            this.MinimumSize = new System.Drawing.Size(300, 375);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(300, 800);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(300, 300);
             this.Name = "SAV_Pokedex";
-            this.Text = "Options Editor";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Pokédex Editor";
             this.ResumeLayout(false);
             this.PerformLayout();
 

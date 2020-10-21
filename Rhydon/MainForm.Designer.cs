@@ -98,6 +98,8 @@
             this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.tabBoxMulti = new System.Windows.Forms.TabControl();
             this.Tab_Trainer = new System.Windows.Forms.TabPage();
+            this.TB_SaveTID = new System.Windows.Forms.MaskedTextBox();
+            this.LBL_SaveTID = new System.Windows.Forms.Label();
             this.GB_TimePlayed = new System.Windows.Forms.GroupBox();
             this.MT_Seconds = new System.Windows.Forms.MaskedTextBox();
             this.MT_Hours = new System.Windows.Forms.MaskedTextBox();
@@ -128,8 +130,9 @@
             this.L_Party = new System.Windows.Forms.Label();
             this.L_Save = new System.Windows.Forms.Label();
             this.PB_DragOut = new System.Windows.Forms.PictureBox();
-            this.TB_SaveTID = new System.Windows.Forms.MaskedTextBox();
-            this.LBL_SaveTID = new System.Windows.Forms.Label();
+            this.B_Apply = new System.Windows.Forms.Button();
+            this.B_Close = new System.Windows.Forms.Button();
+            this.lb_Status = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.Tab_Main.SuspendLayout();
             this.GB_CurrentMoves.SuspendLayout();
@@ -152,6 +155,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Menu_File,
             this.Menu_Options});
+            this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(514, 24);
@@ -174,7 +178,7 @@
             this.Menu_Open.Name = "Menu_Open";
             this.Menu_Open.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.Menu_Open.ShowShortcutKeys = false;
-            this.Menu_Open.Size = new System.Drawing.Size(139, 22);
+            this.Menu_Open.Size = new System.Drawing.Size(180, 22);
             this.Menu_Open.Text = "&Open...";
             this.Menu_Open.Click += new System.EventHandler(this.mainMenuOpen);
             // 
@@ -183,7 +187,7 @@
             this.Menu_Save.Name = "Menu_Save";
             this.Menu_Save.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.Menu_Save.ShowShortcutKeys = false;
-            this.Menu_Save.Size = new System.Drawing.Size(139, 22);
+            this.Menu_Save.Size = new System.Drawing.Size(180, 22);
             this.Menu_Save.Text = "&Save PK1...";
             this.Menu_Save.Click += new System.EventHandler(this.mainMenuSave);
             // 
@@ -191,7 +195,7 @@
             // 
             this.Menu_ExportSAV.Enabled = false;
             this.Menu_ExportSAV.Name = "Menu_ExportSAV";
-            this.Menu_ExportSAV.Size = new System.Drawing.Size(139, 22);
+            this.Menu_ExportSAV.Size = new System.Drawing.Size(180, 22);
             this.Menu_ExportSAV.Text = "&Export SAV...";
             this.Menu_ExportSAV.Click += new System.EventHandler(this.clickExportSav);
             // 
@@ -200,7 +204,7 @@
             this.Menu_Exit.Name = "Menu_Exit";
             this.Menu_Exit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
             this.Menu_Exit.ShowShortcutKeys = false;
-            this.Menu_Exit.Size = new System.Drawing.Size(139, 22);
+            this.Menu_Exit.Size = new System.Drawing.Size(180, 22);
             this.Menu_Exit.Text = "&Quit";
             this.Menu_Exit.Click += new System.EventHandler(this.mainMenuClose);
             // 
@@ -219,7 +223,7 @@
             this.Menu_Modify.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Menu_ModifyDex});
             this.Menu_Modify.Name = "Menu_Modify";
-            this.Menu_Modify.Size = new System.Drawing.Size(194, 22);
+            this.Menu_Modify.Size = new System.Drawing.Size(193, 22);
             this.Menu_Modify.Text = "Set to SAV";
             // 
             // Menu_ModifyDex
@@ -228,21 +232,21 @@
             this.Menu_ModifyDex.CheckOnClick = true;
             this.Menu_ModifyDex.CheckState = System.Windows.Forms.CheckState.Checked;
             this.Menu_ModifyDex.Name = "Menu_ModifyDex";
-            this.Menu_ModifyDex.Size = new System.Drawing.Size(159, 22);
+            this.Menu_ModifyDex.Size = new System.Drawing.Size(160, 22);
             this.Menu_ModifyDex.Text = "Modify Pokédex";
             this.Menu_ModifyDex.Click += new System.EventHandler(this.toggleModifyDex);
             // 
             // Menu_UseOldSprites
             // 
             this.Menu_UseOldSprites.Name = "Menu_UseOldSprites";
-            this.Menu_UseOldSprites.Size = new System.Drawing.Size(194, 22);
+            this.Menu_UseOldSprites.Size = new System.Drawing.Size(193, 22);
             this.Menu_UseOldSprites.Text = "Use old sprites";
             this.Menu_UseOldSprites.Click += new System.EventHandler(this.toggleUseOldSprites);
             // 
             // Menu_JapaneseMode
             // 
             this.Menu_JapaneseMode.Name = "Menu_JapaneseMode";
-            this.Menu_JapaneseMode.Size = new System.Drawing.Size(194, 22);
+            this.Menu_JapaneseMode.Size = new System.Drawing.Size(193, 22);
             this.Menu_JapaneseMode.Text = "Toggle Japanese Mode";
             this.Menu_JapaneseMode.Click += new System.EventHandler(this.toggleJapaneseMode);
             // 
@@ -944,6 +948,26 @@
             this.Tab_Trainer.Text = "Trainer";
             this.Tab_Trainer.UseVisualStyleBackColor = true;
             // 
+            // TB_SaveTID
+            // 
+            this.TB_SaveTID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TB_SaveTID.Location = new System.Drawing.Point(88, 151);
+            this.TB_SaveTID.Mask = "00000";
+            this.TB_SaveTID.Name = "TB_SaveTID";
+            this.TB_SaveTID.Size = new System.Drawing.Size(40, 20);
+            this.TB_SaveTID.TabIndex = 61;
+            this.TB_SaveTID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TB_SaveTID.TextChanged += new System.EventHandler(this.updateSaveTID);
+            // 
+            // LBL_SaveTID
+            // 
+            this.LBL_SaveTID.Location = new System.Drawing.Point(46, 153);
+            this.LBL_SaveTID.Name = "LBL_SaveTID";
+            this.LBL_SaveTID.Size = new System.Drawing.Size(40, 13);
+            this.LBL_SaveTID.TabIndex = 62;
+            this.LBL_SaveTID.Text = "TID:";
+            this.LBL_SaveTID.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // GB_TimePlayed
             // 
             this.GB_TimePlayed.Controls.Add(this.MT_Seconds);
@@ -1225,7 +1249,7 @@
             this.B_Pokedex.Name = "B_Pokedex";
             this.B_Pokedex.Size = new System.Drawing.Size(61, 26);
             this.B_Pokedex.TabIndex = 66;
-            this.B_Pokedex.Text = "Pokedex";
+            this.B_Pokedex.Text = "Pokédex";
             this.B_Pokedex.UseVisualStyleBackColor = true;
             this.B_Pokedex.Click += new System.EventHandler(this.openPokedexForm);
             // 
@@ -1266,40 +1290,56 @@
             this.PB_DragOut.TabIndex = 53;
             this.PB_DragOut.TabStop = false;
             // 
-            // TB_SaveTID
+            // B_Apply
             // 
-            this.TB_SaveTID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TB_SaveTID.Location = new System.Drawing.Point(88, 151);
-            this.TB_SaveTID.Mask = "00000";
-            this.TB_SaveTID.Name = "TB_SaveTID";
-            this.TB_SaveTID.Size = new System.Drawing.Size(40, 20);
-            this.TB_SaveTID.TabIndex = 61;
-            this.TB_SaveTID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_SaveTID.TextChanged += new System.EventHandler(this.updateSaveTID);
+            this.B_Apply.Enabled = false;
+            this.B_Apply.Location = new System.Drawing.Point(310, 318);
+            this.B_Apply.Name = "B_Apply";
+            this.B_Apply.Size = new System.Drawing.Size(112, 23);
+            this.B_Apply.TabIndex = 54;
+            this.B_Apply.Text = "Write changes";
+            this.B_Apply.UseVisualStyleBackColor = true;
+            this.B_Apply.Click += new System.EventHandler(this.B_Apply_Click);
             // 
-            // LBL_SaveTID
+            // B_Close
             // 
-            this.LBL_SaveTID.Location = new System.Drawing.Point(46, 153);
-            this.LBL_SaveTID.Name = "LBL_SaveTID";
-            this.LBL_SaveTID.Size = new System.Drawing.Size(40, 13);
-            this.LBL_SaveTID.TabIndex = 62;
-            this.LBL_SaveTID.Text = "TID:";
-            this.LBL_SaveTID.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.B_Close.Location = new System.Drawing.Point(428, 318);
+            this.B_Close.Name = "B_Close";
+            this.B_Close.Size = new System.Drawing.Size(75, 23);
+            this.B_Close.TabIndex = 55;
+            this.B_Close.Text = "Close";
+            this.B_Close.UseVisualStyleBackColor = true;
+            this.B_Close.Click += new System.EventHandler(this.B_Close_Click);
+            // 
+            // lb_Status
+            // 
+            this.lb_Status.AutoSize = true;
+            this.lb_Status.Location = new System.Drawing.Point(13, 315);
+            this.lb_Status.Name = "lb_Status";
+            this.lb_Status.Size = new System.Drawing.Size(37, 13);
+            this.lb_Status.TabIndex = 56;
+            this.lb_Status.Text = "Status";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(514, 321);
+            this.ClientSize = new System.Drawing.Size(514, 351);
+            this.Controls.Add(this.lb_Status);
+            this.Controls.Add(this.B_Close);
+            this.Controls.Add(this.B_Apply);
             this.Controls.Add(this.PB_DragOut);
             this.Controls.Add(this.L_Save);
             this.Controls.Add(this.tabBoxMulti);
             this.Controls.Add(this.tabMain);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(530, 360);
-            this.MinimumSize = new System.Drawing.Size(530, 360);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(530, 390);
+            this.MinimumSize = new System.Drawing.Size(530, 390);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rhydon Save Editor";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -1436,6 +1476,9 @@
         private System.Windows.Forms.ToolStripMenuItem Menu_JapaneseMode;
         private System.Windows.Forms.MaskedTextBox TB_SaveTID;
         private System.Windows.Forms.Label LBL_SaveTID;
+        private System.Windows.Forms.Button B_Apply;
+        private System.Windows.Forms.Button B_Close;
+        private System.Windows.Forms.Label lb_Status;
     }
 }
 

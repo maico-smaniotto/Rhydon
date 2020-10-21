@@ -138,10 +138,14 @@
             this.Controls.Add(this.CHK_BattleEffects);
             this.Controls.Add(this.B_Save);
             this.Controls.Add(this.B_Cancel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(220, 215);
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(220, 215);
             this.Name = "SAV_Options";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Options Editor";
             this.ResumeLayout(false);
             this.PerformLayout();

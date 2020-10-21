@@ -149,17 +149,27 @@ namespace Rhydon
 
         private void set(int index, PK1 to_set)
         {
-            if (index < pokemonlist.Count)
+            if (index >= pokemonlist.Count)
             {
-                pokemonlist[index] = to_set;
-                update(index);
-            }
+                index = pokemonlist.Count++;
+            } 
             else
             {
-                pokemonlist.Count++;
-                pokemonlist[pokemonlist.Count - 1] = to_set;
-                update(pokemonlist.Count - 1);
-            }
+                string currentpk = RBY_Encoding.GetString(pokemonlist[index].Nickname, pokemonlist[index] is JPK1) + " (" + pokemonlist[index].EXP.ToString() + " EXP)";
+                string newpk     = RBY_Encoding.GetString(to_set.Nickname, to_set is JPK1) + " (" + to_set.EXP.ToString() + " EXP)";
+                if (Util.Prompt(
+                        MessageBoxButtons.YesNo, "Replace?" + Environment.NewLine + Environment.NewLine +
+                                                 "Actual: " + currentpk + Environment.NewLine +
+                                                 "New: " + newpk) != DialogResult.Yes)
+                {
+                    return;
+                }
+            }            
+            pokemonlist[index] = to_set;
+            update(index);
+
+            MainForm mf = FindForm() as MainForm;
+            mf.SetStatusSet(index);
         }
 
         private void HandleSet(object sender, EventArgs e)
